@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Length Converter</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -19,45 +14,29 @@
             align-items: center;
             justify-content: center;
         }
-
         .container {
             background: white;
             width: 100%;
             max-width: 520px;
             margin: 20px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             overflow: hidden;
         }
-
         .header {
             background: linear-gradient(135deg, #4a6cf7, #6b5ae0);
             color: white;
             padding: 25px;
             text-align: center;
         }
-
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
-        }
-
-        .form-container {
-            padding: 40px 30px;
-        }
-
+        .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .form-container { padding: 40px 30px; }
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #333;
         }
-
         input, select {
             width: 100%;
             padding: 14px;
@@ -65,68 +44,33 @@
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 16px;
-            transition: 0.3s;
         }
-
         input:focus, select:focus {
             border-color: #667eea;
-            outline: none;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-
-        button {
-            width: 100%;
-            padding: 16px;
-            background: #4a6cf7;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background: #3b5ad1;
-            transform: translateY(-2px);
-        }
-
         .result {
             margin-top: 30px;
-            padding: 20px;
+            padding: 25px;
             background: #f8f9ff;
             border-radius: 12px;
             border: 2px solid #e0e7ff;
-            min-height: 80px;
             text-align: center;
+            min-height: 100px;
         }
-
-        .result h2 {
-            color: #333;
-            margin-bottom: 8px;
-        }
-
         .result-value {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: #4a6cf7;
         }
-
         .back-btn {
-            display: inline-block;
             margin-top: 20px;
             padding: 12px 25px;
             background: #6c757d;
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            background: #5a6268;
+            display: inline-block;
         }
     </style>
 </head>
@@ -134,48 +78,40 @@
     <div class="container">
         <div class="header">
             <h1>📏 Length Converter</h1>
-            <p>Convert between different length units instantly</p>
+            <p>Instant conversion • No reload</p>
         </div>
 
         <div class="form-container">
-            <form action="/length" method="POST">
+            <label>Value</label>
+            <input type="number" id="value" step="any" placeholder="Enter value" oninput="convert()">
 
-                <label>Value</label>
-                <input type="number" step="any" name="value" placeholder="Enter value" required>
+            <label>From</label>
+            <select id="from" onchange="convert()">
+                <option value="mm">Millimeter (mm)</option>
+                <option value="cm">Centimeter (cm)</option>
+                <option value="m" selected>Meter (m)</option>
+                <option value="km">Kilometer (km)</option>
+                <option value="inch">Inch (in)</option>
+                <option value="foot">Foot (ft)</option>
+                <option value="yard">Yard (yd)</option>
+                <option value="mile">Mile (mi)</option>
+            </select>
 
-                <label>From</label>
-                <select name="from" required>
-                    <option value="">-- Select Unit --</option>
-                    <option value="mm">Millimeter (mm)</option>
-                    <option value="cm">Centimeter (cm)</option>
-                    <option value="m" selected>Meter (m)</option>
-                    <option value="km">Kilometer (km)</option>
-                    <option value="inch">Inch (in)</option>
-                    <option value="foot">Foot (ft)</option>
-                    <option value="yard">Yard (yd)</option>
-                    <option value="mile">Mile (mi)</option>
-                </select>
+            <label>To</label>
+            <select id="to" onchange="convert()">
+                <option value="mm">Millimeter (mm)</option>
+                <option value="cm">Centimeter (cm)</option>
+                <option value="m">Meter (m)</option>
+                <option value="km" selected>Kilometer (km)</option>
+                <option value="inch">Inch (in)</option>
+                <option value="foot">Foot (ft)</option>
+                <option value="yard">Yard (yd)</option>
+                <option value="mile">Mile (mi)</option>
+            </select>
 
-                <label>To</label>
-                <select name="to" required>
-                    <option value="">-- Select Unit --</option>
-                    <option value="mm">Millimeter (mm)</option>
-                    <option value="cm">Centimeter (cm)</option>
-                    <option value="m">Meter (m)</option>
-                    <option value="km" selected>Kilometer (km)</option>
-                    <option value="inch">Inch (in)</option>
-                    <option value="foot">Foot (ft)</option>
-                    <option value="yard">Yard (yd)</option>
-                    <option value="mile">Mile (mi)</option>
-                </select>
-
-                <button type="submit">Convert Now</button>
-            </form>
-
-            <!-- Result Area -->
-            <div class="result">
+            <div class="result" id="result">
                 <h2>Result</h2>
-                <div class="result-value">{{ .result }}</div>
+                <div class="result-value" id="result-value">0</div>
             </div>
 
             <center>
@@ -183,5 +119,46 @@
             </center>
         </div>
     </div>
+
+    <script>
+        function convert() {
+            const value = parseFloat(document.getElementById('value').value);
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+
+            if (!value || isNaN(value)) {
+                document.getElementById('result-value').textContent = "0";
+                return;
+            }
+
+            // Convert to meter first
+            let meters = value;
+            switch(from) {
+                case "mm": meters = value / 1000; break;
+                case "cm": meters = value / 100; break;
+                case "m": meters = value; break;
+                case "km": meters = value * 1000; break;
+                case "inch": meters = value * 0.0254; break;
+                case "foot": meters = value * 0.3048; break;
+                case "yard": meters = value * 0.9144; break;
+                case "mile": meters = value * 1609.34; break;
+            }
+
+            // Convert meter to target unit
+            let result = meters;
+            switch(to) {
+                case "mm": result = meters * 1000; break;
+                case "cm": result = meters * 100; break;
+                case "m": result = meters; break;
+                case "km": result = meters / 1000; break;
+                case "inch": result = meters / 0.0254; break;
+                case "foot": result = meters / 0.3048; break;
+                case "yard": result = meters / 0.9144; break;
+                case "mile": result = meters / 1609.34; break;
+            }
+
+            document.getElementById('result-value').textContent = result.toFixed(4);
+        }
+    </script>
 </body>
 </html>

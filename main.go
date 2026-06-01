@@ -20,10 +20,8 @@ func main() {
 
 	r.GET("/length", handler.ShwoLengthPage)
 
-	r.POST("/length", handler.ConvertLength)
 
 	r.GET("/weight",handler.ShowWeightPage)
-	r.POST("/weight",handler.ConvertWeight)
 
 	// start server
 	r.Run(":8080")
