@@ -23,6 +23,7 @@ func main() {
 
 
 	r.GET("/weight",handler.ShowWeightPage)
+	r.GET("/temperature",handler.ShowTempraturePage)
 
 	// start server
 	r.Run(":8081")
