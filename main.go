@@ -10,7 +10,8 @@ import (
 func main() {
 
 	r := gin.Default()
-	r.LoadHTMLGlob("static/*")
+	r.LoadHTMLGlob("templates/*")
+	r.Static("/static","./static")
 
 	r.GET("/",func(c *gin.Context) {
 		c.HTML(http.StatusOK,"index.html",gin.H{
@@ -20,11 +21,9 @@ func main() {
 
 	r.GET("/length", handler.ShwoLengthPage)
 
-	r.POST("/length", handler.ConvertLength)
 
 	r.GET("/weight",handler.ShowWeightPage)
-	r.POST("/weight",handler.ConvertWeight)
 
 	// start server
-	r.Run(":8080")
+	r.Run(":8081")
 }
