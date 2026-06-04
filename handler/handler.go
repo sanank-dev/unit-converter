@@ -14,3 +14,10 @@ func ShwoLengthPage(c *gin.Context) {
 func ShowWeightPage(c *gin.Context)  {
 	c.HTML(http.StatusOK,"weight.html",nil)
 }
+<<<<<<< HEAD
+=======
+
+func ShowTempraturePage(c *gin.Context)  {
+	c.HTML(http.StatusOK,"temprature.html",nil)
+}
+>>>>>>> learning

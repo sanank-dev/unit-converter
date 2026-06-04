@@ -11,7 +11,11 @@ func main() {
 
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
+
 	r.Static("/static","./sttaic")
+
+	r.Static("/static","./static")
+
 
 	r.GET("/",func(c *gin.Context) {
 		c.HTML(http.StatusOK,"index.html",gin.H{
@@ -24,6 +28,10 @@ func main() {
 
 	r.GET("/weight",handler.ShowWeightPage)
 
+
+	r.GET("/temperature",handler.ShowTempraturePage)
+
+
 	// start server
-	r.Run(":8080")
+	r.Run(":8081")
 }
